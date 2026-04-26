@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "User account information and preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "WishlistItem": {
+      "title": "Wishlist Item",
+      "description": "A game tracked by the user",
+      "type": "object",
+      "properties": {
+        "gameId": { "type": "string" },
+        "title": { "type": "string" },
+        "thumb": { "type": "string" },
+        "addedAt": { "type": "string", "format": "date-time" },
+        "targetPrice": { "type": "number" },
+        "currentBestPrice": { "type": "number" },
+        "lastNotifiedPrice": { "type": "number" }
+      },
+      "required": ["gameId", "title"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile document"
+    },
+    "/users/{userId}/wishlist/{gameId}": {
+      "schema": "WishlistItem",
+      "description": "Individual game in a user's wishlist"
+    }
+  }
+}
